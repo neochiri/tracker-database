@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="01" author="PaulRH">
+        <createTable tableName="user" remarks="Table to store User information">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_USER_ID" nullable="false"/>
+            </column>
+            <column name="user_name" type="varchar(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="second_last_name" type="varchar(30)"/>
+            <column name="email" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="format_time" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_position" type="varchar(30)"/>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="blob"/>
+            <column name="create_date" type="datetime"/>
+            <column name="update_date" type="datetime"/>
+            <column name="create_user" type="varchar(25)"/>
+            <column name="update_user" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="02" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="user"/>
+    </changeSet>
+    <changeSet id="03" author="PaulRH">
+        <addUniqueConstraint columnNames="user_name"
+                             tableName="user"
+                             constraintName="UK_USER_USER_NAME"/>
+    </changeSet>
+    <changeSet id="04" author="PaulRH">
+        <addUniqueConstraint columnNames="email"
+                             tableName="user"
+                             constraintName="UK_USER_EMAIL"/>
+    </changeSet>
+</databaseChangeLog>
