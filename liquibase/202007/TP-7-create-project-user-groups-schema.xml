@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="01" author="PaulRH">
+        <createTable tableName="project_users_groups" remarks="Table to store information about user groups in a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_GROUPS_USERS_ID" nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(25)"/>
+            <column name="create_date" type="datetime"/>
+            <column name="update_date" type="datetime"/>
+            <column name="create_user" type="varchar(25)"/>
+            <column name="update_user" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="02" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="project_groups_users"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_GROUP_USER_PROJECT_ID_PROJECT_ID"/>
+    </changeSet>
+    <changeSet id="03" author="PaulRH">
+        <createTable tableName="project_roles" remarks="Table to store information about the roles of a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_ID" nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="04" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="project_roles"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_ROLES_PROJECT_ID_PROJECT_ID"/>
+    </changeSet>
+    <changeSet id="05" author="PaulRH">
+        <createTable tableName="project_roles_users_groups" remarks="Table to store information about the roles of a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_ID" nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
