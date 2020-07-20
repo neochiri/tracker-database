@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="01" author="PaulRH">
+        <createTable tableName="project_users_groups" remarks="Table to store information about user groups in a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_GROUPS_USERS_ID" nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(25)"/>
+            <column name="create_date" type="datetime"/>
+            <column name="update_date" type="datetime"/>
+            <column name="create_user" type="varchar(25)"/>
+            <column name="update_user" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="02" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="project_users_groups"/>
+    </changeSet>
+    <changeSet id="03" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="project_users_groups"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_GROUP_USER_PROJECT_ID_PROJECT_ID"/>
+    </changeSet>
+    <changeSet id="04" author="PaulRH">
+        <createTable tableName="project_roles" remarks="Table to store information about the roles of a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_ID" nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(25)"/>
+            <column name="create_date" type="datetime"/>
+            <column name="update_date" type="datetime"/>
+            <column name="create_user" type="varchar(25)"/>
+            <column name="update_user" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="05" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="project_roles"/>
+    </changeSet>
+    <changeSet id="06" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="project_roles"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_ROLES_PROJECT_ID_PROJECT_ID"/>
+    </changeSet>
+    <changeSet id="07" author="PaulRH">
+        <createTable tableName="project_roles_users_groups" remarks="Table to relate the roles of a project with user groups of a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_USERS_GROUPS_ID" nullable="false"/>
+            </column>
+            <column name="group_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="08" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="project_roles_users_groups"/>
+    </changeSet>
+    <changeSet id="09" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="project_roles_users_groups"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_users_groups"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PRJT_RLE_USR_GRP_GRP_ID_PRJT_USR_GRP_ID"/>
+    </changeSet>
+    <changeSet id="10" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="project_roles_users_groups"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_roles"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PRJT_RLE_USR_GRP_RLE_ID_RLE_ID"/>
+    </changeSet>
+    <changeSet id="11" author="PaulRH">
+        <createTable tableName="project_permissions" remarks="Table to store information about permissions of a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_PERMISSIONS_ID" nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)"/>
+            <column name="create_date" type="datetime"/>
+            <column name="update_date" type="datetime"/>
+            <column name="create_user" type="varchar(25)"/>
+            <column name="update_user" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="12" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="project_permissions"/>
+    </changeSet>
+    <changeSet id="13" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="project_permissions"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_PERMISSIONS_PROJECT_ID_PROJECT_ID"/>
+    </changeSet>
+    <changeSet id="14" author="PaulRH">
+        <createTable tableName="project_roles_permissions" remarks="Table to relate roles and permissions in a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_PERMISSIONS_ID" nullable="false"/>
+            </column>
+            <column name="permission_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="15" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="project_roles_permissions"/>
+    </changeSet>
+    <changeSet id="16" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="permission_id"
+                                 baseTableName="project_roles_permissions"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_permissions"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_ROLES_PRMISSNS_PRMISSNS_ID_PRJCT_PRMISSNS_ID"/>
+    </changeSet>
+    <changeSet id="17" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="project_roles_permissions"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_roles"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_ROLES_PRMISSNS_PRMISSNS_ID_PRJCT_ROLES_ID"/>
+    </changeSet>
+    <changeSet id="18" author="PaulRH">
+        <createTable tableName="project_users" remarks="Table to store the information about the users of a project">
+            <column name="id" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_USERS_ID" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="datetime"/>
+            <column name="update_date" type="datetime"/>
+            <column name="create_user" type="varchar(25)"/>
+            <column name="update_user" type="varchar(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="19" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="project_users"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_USERS_USER_ID_USERS_ID"/>
+    </changeSet>
+    <changeSet id="20" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="project_users"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_roles"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_USERS_ROLE_ID_PROJECT_ROLES_ID"/>
+    </changeSet>
+    <changeSet id="21" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="project_users"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PROJECT_USERS_PROJECT_ID_PROJECT_ID"/>
+    </changeSet>
+    <changeSet id="22" author="PaulRH">
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="project_users"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_users_groups"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 constraintName="FK_PRJCT_USRS_GRP_ID_PRJCT_USRS_GRP_ID"/>
+    </changeSet>
+</databaseChangeLog>
