@@ -27,7 +27,7 @@
     </changeSet>
     <changeSet id="03" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="project_id"
-                                 baseTableName="project_groups_users"
+                                 baseTableName="project_users_groups"
                                  referencedColumnNames="id"
                                  referencedTableName="project"
                                  onDelete="CASCADE"
@@ -68,9 +68,9 @@
     <changeSet id="07" author="PaulRH">
         <createTable tableName="project_roles_users_groups" remarks="Table to relate the roles of a project with user groups of a project">
             <column name="id" type="int">
-                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_ID" nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="PK_PROJECT_ROLES_USERS_GROUPS_ID" nullable="false"/>
             </column>
-            <column name="project_id" type="int">
+            <column name="group_id" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="role_id" type="int">
@@ -89,19 +89,19 @@
                           tableName="project_roles_users_groups"/>
     </changeSet>
     <changeSet id="09" author="PaulRH">
-        <addForeignKeyConstraint baseColumnNames="project_id"
+        <addForeignKeyConstraint baseColumnNames="group_id"
                                  baseTableName="project_roles_users_groups"
                                  referencedColumnNames="id"
-                                 referencedTableName="project"
+                                 referencedTableName="project_users_groups"
                                  onDelete="CASCADE"
                                  onUpdate="CASCADE"
-                                 constraintName="FK_PRJT_RLE_USR_GRP_PRJT_ID_PRJT_ID"/>
+                                 constraintName="FK_PRJT_RLE_USR_GRP_GRP_ID_PRJT_USR_GRP_ID"/>
     </changeSet>
     <changeSet id="10" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="project_roles_users_groups"
                                  referencedColumnNames="id"
-                                 referencedTableName="project_roleS"
+                                 referencedTableName="project_roles"
                                  onDelete="CASCADE"
                                  onUpdate="CASCADE"
                                  constraintName="FK_PRJT_RLE_USR_GRP_RLE_ID_RLE_ID"/>
@@ -166,7 +166,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PROJECT_ROLES_PRMISSNS_PRMISSNS_ID_PRJCT_PRMISSNS_ID"/>
     </changeSet>
-    <changeSet id="16" author="PaulRH">
+    <changeSet id="17" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="project_roles_permissions"
                                  referencedColumnNames="id"
@@ -175,7 +175,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PROJECT_ROLES_PRMISSNS_PRMISSNS_ID_PRJCT_ROLES_ID"/>
     </changeSet>
-    <changeSet id="17" author="PaulRH">
+    <changeSet id="18" author="PaulRH">
         <createTable tableName="project_users" remarks="Table to store the information about the users of a project">
             <column name="id" type="int">
                 <constraints primaryKey="true" primaryKeyName="PK_PROJECT_USERS_ID" nullable="false"/>
@@ -198,7 +198,7 @@
             <column name="update_user" type="varchar(25)"/>
         </createTable>
     </changeSet>
-    <changeSet id="18" author="PaulRH">
+    <changeSet id="19" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="project_users"
                                  referencedColumnNames="id"
@@ -207,7 +207,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PROJECT_USERS_USER_ID_USERS_ID"/>
     </changeSet>
-    <changeSet id="19" author="PaulRH">
+    <changeSet id="20" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="project_users"
                                  referencedColumnNames="id"
@@ -216,7 +216,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PROJECT_USERS_ROLE_ID_PROJECT_ROLES_ID"/>
     </changeSet>
-    <changeSet id="20" author="PaulRH">
+    <changeSet id="21" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="project_id"
                                  baseTableName="project_users"
                                  referencedColumnNames="id"
@@ -225,7 +225,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PROJECT_USERS_PROJECT_ID_PROJECT_ID"/>
     </changeSet>
-    <changeSet id="21" author="PaulRH">
+    <changeSet id="22" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="group_id"
                                  baseTableName="project_users"
                                  referencedColumnNames="id"

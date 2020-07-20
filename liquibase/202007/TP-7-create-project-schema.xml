@@ -34,7 +34,7 @@
     <changeSet id="03" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="owner"
                                  baseTableName="project"
-                                 referencedColumnNames="name"
+                                 referencedColumnNames="user_name"
                                  referencedTableName="user"
                                  onDelete="SET NULL"
                                  onUpdate="CASCADE"
