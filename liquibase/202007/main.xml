@@ -6,4 +6,5 @@
     <include file="202007/001-create-user-structure.xml"/>
     <include file="202007/TP-7-create-project-schema.xml"/>
     <include file="202007/TP-7-create-project-user-groups-schema.xml"/>
+    <include file="202007/TP-7-create-project-releases-schema.xml"/>
 </databaseChangeLog>
