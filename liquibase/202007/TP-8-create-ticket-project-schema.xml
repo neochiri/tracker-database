@@ -63,7 +63,7 @@
     </changeSet>
     <changeSet id="06" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_type_id"
-                                 baseTableName="project_ticket_type"
+                                 baseTableName="project_ticket_template"
                                  referencedColumnNames="id"
                                  referencedTableName="project_ticket_type"
                                  onDelete="CASCADE"
@@ -90,14 +90,14 @@
             <column name="update_user" type="varchar(25)"/>
         </createTable>
     </changeSet>
-    <changeSet id="05" author="PaulRH">
+    <changeSet id="08" author="PaulRH">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           incrementBy="1"
                           startWith="1"
                           tableName="project_ticket_field"/>
     </changeSet>
-    <changeSet id="06" author="PaulRH">
+    <changeSet id="09" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_type_id"
                                  baseTableName="project_ticket_field"
                                  referencedColumnNames="id"
@@ -106,7 +106,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PRJCT_TICKT_FILD_ID_PRJCT_TICKT_TYPE_ID"/>
     </changeSet>
-    <changeSet id="07" author="PaulRH">
+    <changeSet id="10" author="PaulRH">
         <createTable tableName="project_ticket_template_fields" remarks="Table that relates the fields of a template from a project">
             <column name="id" type="int">
                 <constraints primaryKey="true" primaryKeyName="PK_PROJECT_TICKET_TEMPLATE_FIELDS_ID" nullable="false"/>
@@ -122,14 +122,14 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="08" author="PaulRH">
+    <changeSet id="11" author="PaulRH">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           incrementBy="1"
                           startWith="1"
                           tableName="project_ticket_template_fields"/>
     </changeSet>
-    <changeSet id="09" author="PaulRH">
+    <changeSet id="12" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_field_id"
                                  baseTableName="project_ticket_template_fields"
                                  referencedColumnNames="id"
@@ -138,7 +138,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PRJCT_TICKT_TMPLTE_FILD_ID_PRJCT_TICKT_FILD_ID"/>
     </changeSet>
-    <changeSet id="10" author="PaulRH">
+    <changeSet id="13" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_template_id"
                                  baseTableName="project_ticket_template_fields"
                                  referencedColumnNames="id"
@@ -147,7 +147,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_PRJCT_TICKT_TMPLTE_FILD_ID_PRJCT_TICKT_TMPLTE_ID"/>
     </changeSet>
-    <changeSet id="11" author="PaulRH">
+    <changeSet id="14" author="PaulRH">
         <createTable tableName="project_ticket_status" remarks="Table to contain the status a ticket type can have in a project">
             <column name="id" type="int">
                 <constraints primaryKey="true" primaryKeyName="PK_PROJECT_TICKET_STATUS_ID" nullable="false"/>
@@ -164,14 +164,14 @@
             <column name="update_user" type="varchar(25)"/>
         </createTable>
     </changeSet>
-    <changeSet id="12" author="PaulRH">
+    <changeSet id="15" author="PaulRH">
         <addAutoIncrement columnDataType="int"
                           columnName="id"
                           incrementBy="1"
                           startWith="1"
                           tableName="project_ticket_status"/>
     </changeSet>
-    <changeSet id="13" author="PaulRH">
+    <changeSet id="16" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_type_id"
                                  baseTableName="project_ticket_status"
                                  referencedColumnNames="id"
