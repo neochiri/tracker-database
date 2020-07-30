@@ -57,6 +57,13 @@
         </createTable>
     </changeSet>
     <changeSet id="04" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ticket"/>
+    </changeSet>
+    <changeSet id="05" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_type_id"
                                  baseTableName="ticket"
                                  referencedColumnNames="id"
@@ -65,7 +72,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_TICKET_TYPE_ID_PROJECT_TICKET_TYPE_ID"/>
     </changeSet>
-    <changeSet id="05" author="PaulRH">
+    <changeSet id="06" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_status_id"
                                  baseTableName="ticket"
                                  referencedColumnNames="id"
@@ -74,7 +81,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_TICKET_STATUS_ID_PROJECT_TICKET_TYPE_ID"/>
     </changeSet>
-    <changeSet id="06" author="PaulRH">
+    <changeSet id="07" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="user_create_id"
                                  baseTableName="ticket"
                                  referencedColumnNames="id"
@@ -83,7 +90,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_USER_CREATE_ID_USER_ID"/>
     </changeSet>
-    <changeSet id="07" author="PaulRH">
+    <changeSet id="08" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="user_assigned_id"
                                  baseTableName="ticket"
                                  referencedColumnNames="id"
@@ -92,7 +99,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_USER_ASSIGNED_ID_USER_ID"/>
     </changeSet>
-    <changeSet id="08" author="PaulRH">
+    <changeSet id="09" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="project_id"
                                  baseTableName="ticket"
                                  referencedColumnNames="id"
@@ -101,8 +108,8 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_PROJECT_ID_PROJECT_ID"/>
     </changeSet>
-    <changeSet id="09" author="PaulRH">
-        <createTable tableName="ticket_labels" remarks="Table to relate the labels of a ticket">
+    <changeSet id="10" author="PaulRH">
+        <createTable tableName="ticket_label" remarks="Table to relate the labels of a ticket">
             <column name="id" type="int">
                 <constraints primaryKey="true" primaryKeyName="PK_TICKET_LABEL_ID" nullable="false"/>
             </column>
@@ -114,25 +121,32 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="10" author="PaulRH">
+    <changeSet id="11" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ticket_label"/>
+    </changeSet>
+    <changeSet id="12" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_id"
-                                 baseTableName="ticket_labels"
+                                 baseTableName="ticket_label"
                                  referencedColumnNames="id"
                                  referencedTableName="ticket"
                                  onDelete="SET NULL"
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_USER_ASSIGNED_ID_USER_ID"/>
     </changeSet>
-    <changeSet id="11" author="PaulRH">
+    <changeSet id="13" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="label_id"
-                                 baseTableName="ticket_labels"
+                                 baseTableName="ticket_label"
                                  referencedColumnNames="id"
                                  referencedTableName="label"
                                  onDelete="CASCADE"
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_PROJECT_ID_PROJECT_ID"/>
     </changeSet>
-    <changeSet id="12" author="PaulRH">
+    <changeSet id="14" author="PaulRH">
         <createTable tableName="ticket_field_value" remarks="Table to store the values of the fields of a Ticket">
             <column name="id" type="int">
                 <constraints primaryKey="true" primaryKeyName="PK_TICKET_FIELD_VALUE_ID" nullable="false"/>
@@ -148,7 +162,14 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="13" author="PaulRH">
+    <changeSet id="15" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ticket_field_value"/>
+    </changeSet>
+    <changeSet id="16" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_id"
                                  baseTableName="ticket_field_value"
                                  referencedColumnNames="id"
@@ -157,7 +178,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_FIELD_VALUE_TICKET_ID_TICKET_ID"/>
     </changeSet>
-    <changeSet id="14" author="PaulRH">
+    <changeSet id="17" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_field_id"
                                  baseTableName="ticket_field_value"
                                  referencedColumnNames="id"
@@ -166,7 +187,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_FIELD_VALUE_TICKET_FIELD_ID_PROJECT_TICKET_FIELD_ID"/>
     </changeSet>
-    <changeSet id="15" author="PaulRH">
+    <changeSet id="18" author="PaulRH">
         <createTable tableName="ticket_comment" remarks="Table to store the comments from a ticket">
             <column name="id" type="int">
                 <constraints primaryKey="true" primaryKeyName="PK_TICKET_COMMENT_ID" nullable="false"/>
@@ -189,7 +210,14 @@
             <column name="update_user" type="varchar(25)"/>
         </createTable>
     </changeSet>
-    <changeSet id="16" author="PaulRH">
+    <changeSet id="19" author="PaulRH">
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="1"
+                          tableName="ticket_comment"/>
+    </changeSet>
+    <changeSet id="20" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="ticket_id"
                                  baseTableName="ticket_comment"
                                  referencedColumnNames="id"
@@ -198,7 +226,7 @@
                                  onUpdate="CASCADE"
                                  constraintName="FK_TICKET_COMMENT_TICKET_ID_TICKET_ID"/>
     </changeSet>
-    <changeSet id="17" author="PaulRH">
+    <changeSet id="21" author="PaulRH">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="ticket_comment"
                                  referencedColumnNames="id"
